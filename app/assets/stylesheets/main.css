@@ -4,7 +4,7 @@ body {
 }
 
 .navbar-brand a {
-    color: #125458;
+    color: #125688;
 }
 
 .navbar-default {
@@ -16,7 +16,7 @@ body {
 }
 
 .navbar-container {
-    width: 640px;
+    width: 70%;
     margin: 0 auto;
 }
 
@@ -35,27 +35,85 @@ body {
     border-width: 1px;
     margin-bottom: 60px;
 }
-
-.article-head {
+.article .article-head {
+    flex-direction: row;
     height: 64px;
-    padding: 14px 20px;
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 24px;
     color: #125688;
     font-size: 15px;
     line-height: 18px;
 }
-.article-head .name {
-    display: block;
+.article .article-head .first-name, .article .article-head .time-ago {
+    display: inline;
 }
-
-.image {
+.article .article-head .first-name {
+    font-weight: 500;
+}
+.article .article-head .time-ago {
+    color: #A5A7AA;
+    float: right;
+}
+.article .image {
     border-bottom: 1px solid #eeefef;
     border-top: 1px solid #eeefef;
 }
 
-.caption {
-    padding: 24px 24px;
+.article-bottom {
+    margin-bottom: 7px;
+    padding-top: 24px;
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-bottom: 10px;
     font-size: 15px;
     line-height: 18px;
+}
+.article-bottom .first-name, .article-bottom .comment-content {
+    display: inline;
+}
+.article-bottom .caption {
+    margin-bottom: 7px;
+}
+.article-bottom .first-name {
+    font-weight: 500;
+    margin-right: 0.3em;
+    color: #125688;
+    font-size: 15px;
+}
+.article-bottom .first-name, .article-bottom .caption-content {
+    display: inline;
+}
+.article-bottom #comment {
+    margin-top: 7px;
+}
+.article-bottom #comment .first-name {
+    font-weight: 500;
+    margin-right: 0.3em;
+}
+.article-bottom #comment .delete-comment {
+    float: right;
+    color: #515151;
+}
+
+.comment_content {
+    font-size: 15px;
+    line-height: 18px;
+    border: medium none;
+    width: 100%;
+    color: #4B4F54;
+}
+
+.comment-like-form {
+    padding-top: 24px;
+    margin-top: 13px;
+    margin-left: 24px;
+    margin-right: 24px;
+    min-height: 68px;
+    align-items: center;
+    border-top: 1px solid #EEEFEF;
+    flex-direction: row;
+    justify-content: center;
 }
 
 .form-wrapper {
@@ -71,3 +129,4 @@ body {
     margin-top: 20px;
     margin-bottom: 40px;
 }
+

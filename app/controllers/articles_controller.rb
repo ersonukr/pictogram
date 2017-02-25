@@ -1,18 +1,21 @@
 class ArticlesController < ApplicationController
 
   #==== Filters ====================================================
+  before_action :authenticate_user!
   before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :owned_article, only: [:edit, :update, :destroy]
 
   def index
     @article = Article.all
   end
 
   def new
-    @article = Article.new
+    @article = current_user.articles.build
   end
 
   def create
-    if @article = Article.create(article_params)
+    @article = current_user.articles.build(article_params)
+    if @article.save
       flash[:success] = "Your article has been created."
       redirect_to articles_path
     else
@@ -49,6 +52,13 @@ class ArticlesController < ApplicationController
 
   def set_article
     @article = Article.find(params[:id])
+  end
+
+  def owned_article
+    unless current_user == @article.user
+      flash[:alert] = "That article doesn't belong to you!"
+      redirect_to root_path
+    end
   end
 
 end

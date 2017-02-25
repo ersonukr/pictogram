@@ -1,0 +1,7 @@
+.first-name
+  = comment.user.first_name
+.comment-content
+  = comment.content
+  - if comment.user == current_user
+    = link_to article_comment_path(article, comment), method: :delete, data: { confirm: "Are you sure?" }, remote: true do
+      %span(class="glyphicon glyphicon-remove delete-comment")

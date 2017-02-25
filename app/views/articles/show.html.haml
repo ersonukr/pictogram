@@ -1,13 +1,9 @@
-.articles-wrapper.row
-  .article
-    .article-head
-      .name
-        Sonu Kumar
-      .image.center-block
-        =image_tag @article.image.url(:medium)
-      %p.caption
-        =@article.caption
-      .text-center.edit-links
-        = link_to "Cancel", articles_path
-        |
-        = link_to "Edit Article", edit_article_path(@article)
+= render 'article', article: @article
+- if @article.user.id == current_user.id
+  .text-center.edit-links
+    = link_to "Cancel", articles_path
+    |
+    = link_to "Edit Article", edit_article_path(@article)
+- else
+  .text-center.edit-links
+    =link_to "Cancel", articles_path

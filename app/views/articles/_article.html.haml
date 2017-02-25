@@ -1,0 +1,21 @@
+.articles-wrapper
+  .article
+    .article-head
+      .thumb-img
+      .first-name
+        =article.user.first_name
+      .time-ago
+        = time_ago_in_words article.created_at
+    .image.center-block
+      =link_to (image_tag article.image.url(:medium), class:'img-responsive'), article_path(article)
+    .article-bottom
+      %p.caption
+        =article.caption
+      - if article.comments
+        = render article.comments, article: article
+    .comment-like-form.row
+      .like-button.col-sm-1
+        %span(class="glyphicon glyphicon-heart-empty")
+      .comment-form.col-sm-11
+        =form_for([article, article.comments.build], remote: true) do |f|
+          = f.text_field :content, placeholder: 'Add a comment...', class: "comment_content", id: "comment_content_#{article.id}"
