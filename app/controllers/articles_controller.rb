@@ -6,7 +6,7 @@ class ArticlesController < ApplicationController
   before_action :owned_article, only: [:edit, :update, :destroy]
 
   def index
-    @article = Article.all
+    @articles = Article.all.order('created_at DESC').page params[:page]
   end
 
   def new

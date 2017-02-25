@@ -1,5 +1,6 @@
 .first-name
-  = comment.user.first_name
+  - if comment.user
+    = comment.user.first_name
 .comment-content
   = comment.content
   - if comment.user == current_user

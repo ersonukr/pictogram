@@ -1,3 +1,5 @@
-.articles-wrapper.row
-  -@article.each do |article|
-    = render 'article', article: article
+#articles
+  = render 'articles'
+
+#paginator.text-center
+  = link_to_next_page @articles, 'LOAD MORE', remote: true, id:'load_more'

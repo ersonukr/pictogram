@@ -3,7 +3,7 @@
     .article-head
       .thumb-img
       .first-name
-        =article.user.first_name
+        = link_to article.user.first_name, profile_path(article.user.first_name)
       .time-ago
         = time_ago_in_words article.created_at
     .image.center-block
@@ -11,11 +11,9 @@
     .article-bottom
       %p.caption
         =article.caption
-      - if article.comments
-        = render article.comments, article: article
-    .comment-like-form.row
-      .like-button.col-sm-1
-        %span(class="glyphicon glyphicon-heart-empty")
-      .comment-form.col-sm-11
-        =form_for([article, article.comments.build], remote: true) do |f|
-          = f.text_field :content, placeholder: 'Add a comment...', class: "comment_content", id: "comment_content_#{article.id}"
+      .comments{id: "comments_#{article.id}"}
+        - if article.comments.any?
+        .paginator{id: "#comments-paginator-#{article.id}"}
+          - unless article.comments.count <= 4
+            = link_to "view all #{article.comments.count} comments", article_comments_path(article), remote: true, class: 'more-comments', data: {article_id: "#{article.id}", type: "html"}
+        = render article.comments.last(4), article: article
