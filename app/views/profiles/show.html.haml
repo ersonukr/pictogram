@@ -1,0 +1,19 @@
+.articles-wrapper
+  .row.profile-header
+    .col-md-6
+      .img-circle
+        = profile_avatar_select(@user)
+    .col-md-6
+      .first-name-and-follow
+        %h3.profile-first-name
+          = @user.first_name
+        %span
+          - if @user == current_user
+            = link_to 'Edit Profile', edit_profile_path(@user.first_name), class: 'btn edit-button'
+      %p.profile-bio
+        = @user.bio
+      .user-statistics
+        %p
+          = pluralize @user.articles.count, 'article'
+  -@articles.each do |article|
+    = render 'articles/article', post: article
