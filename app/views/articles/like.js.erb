@@ -1,0 +1,2 @@
+$("#like_<%= @article.id %>").removeClass('glyphicon-heart-empty').addClass('glyphicon-heart');
+$("#likes_<%= @article.id %>").html("<%= j (render partial: 'articles/likes', locals: { article: @article} ) %>")

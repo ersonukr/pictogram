@@ -12,4 +12,6 @@ class Article < ApplicationRecord
   validates :image, presence: true
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
+  acts_as_votable
+
 end

@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   root 'articles#index'
   resources :articles do
     resources :comments
+    member do
+      get 'like'
+    end
   end
   get ':first_name', to: 'profiles#show', as: :profile
   get ':first_name/edit', to: 'profiles#edit', as: :edit_profile

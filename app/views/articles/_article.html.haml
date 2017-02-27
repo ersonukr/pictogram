@@ -3,17 +3,28 @@
     .article-head
       .thumb-img
       .first-name
-        = link_to article.user.first_name, profile_path(article.user.first_name)
+        =link_to article.user.first_name, profile_path(article.user.first_name)
       .time-ago
-        = time_ago_in_words article.created_at
+        =time_ago_in_words article.created_at
     .image.center-block
-      =link_to (image_tag article.image.url(:medium), class:'img-responsive'), article_path(article)
+      =link_to (image_tag article.image.url(:medium), class:'img-responsive'),article_path(article)
     .article-bottom
-      %p.caption
-        =article.caption
-      .comments{id: "comments_#{article.id}"}
-        - if article.comments.any?
-        .paginator{id: "#comments-paginator-#{article.id}"}
-          - unless article.comments.count <= 4
-            = link_to "view all #{article.comments.count} comments", article_comments_path(article), remote: true, class: 'more-comments', data: {article_id: "#{article.id}", type: "html"}
-        = render article.comments.last(4), article: article
+      = render 'articles/likes', article: article
+      .caption
+        .caption-content
+          .first-name
+            =link_to article.user.first_name, profile_path(article.user.first_name)
+            =article.caption
+          .comments{id: "comments_#{article.id}"}
+            -if article.comments.any?
+              = render article.comments.first(4), article: article
+              -unless article.comments.count <= 4
+                .paginator{id: "#comments-paginator-#{article.id}"}
+                  =link_to "view all #{article.comments.count} comments", article_comments_path(article), remote: true, class: 'more-comments', id: "more_comments_#{article.id}", data: {article_id: "#{article.id}", type: "html", value: "#{article.comments.count}"}
+    .comment-like-form.row
+      .col-sm-1.like-button
+        =link_to '', like_article_path(article.id), remote: true, id: "like_#{article.id}", class: "like glyphicon #{liked_article article}"
+      .comment-form.col-sm-11
+        =form_for([article, article.comments.build], remote: true) do |f|
+          =f.text_field :content, placeholder: 'Add a comment...', class: "comment_content", id: "comment_content_#{article.id}", data: { article_id: "#{article.id}", value: "#{article.comments.count}" }
+          =f.submit 'New Comment', class: 'comment-submit-button' # Hidden with CSS

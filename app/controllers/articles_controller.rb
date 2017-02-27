@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
 
   #==== Filters ====================================================
   before_action :authenticate_user!
-  before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :set_article, only: [:show, :edit, :update, :destroy, :like]
   before_action :owned_article, only: [:edit, :update, :destroy]
 
   def index
@@ -42,6 +42,15 @@ class ArticlesController < ApplicationController
   def destroy
     @article.destroy
     redirect_to articles_path
+  end
+
+  def like
+    if @article.liked_by current_user
+      respond_to do |format|
+        format.html { redirect_to :back }
+        format.js
+      end
+    end
   end
 
   private

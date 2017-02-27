@@ -248,4 +248,13 @@ html {
     margin-top: 20px;
 }
 
+.likes {
+    margin-top: 20px;
+    margin-bottom: 7px;
+}
+
+.like-button a:hover, a:focus {
+    text-decoration: none;
+    color: red;
+}
 
