@@ -6,6 +6,7 @@ class Article < ApplicationRecord
   #==== Associations ====================================================
   belongs_to :user, inverse_of: :articles
   has_many :comments, inverse_of: :article, dependent: :destroy
+  has_many :notifications, inverse_of: :article, dependent: :destroy
 
   #==== Validations ====================================================
   validates :user_id, presence: true

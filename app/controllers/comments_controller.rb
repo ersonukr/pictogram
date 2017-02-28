@@ -14,6 +14,7 @@ class CommentsController < ApplicationController
     @comment = @article.comments.build(comment_params)
     @comment.user_id = current_user.id
     if @comment.save
+      create_notification @article, @comment
       respond_to do |format|
         format.html { redirect_to root_path }
         format.js
@@ -43,4 +44,14 @@ class CommentsController < ApplicationController
   def set_article
     @article = Article.find(params[:article_id])
   end
+
+  def create_notification(article)
+    return if article.user.id == current_user.id
+    Notification.create(user_id: article.user.id,
+                        notified_by_id: current_user.id,
+                        article_id: article.id,
+                        comment_id: comment.id,
+                        notice_type: 'comment')
+  end
+
 end

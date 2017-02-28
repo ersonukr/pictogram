@@ -258,3 +258,21 @@ html {
     color: red;
 }
 
+.notification-dropdown {
+    margin-top: 10px;
+}
+.notification-dropdown button {
+    border: none;
+}
+
+.notification-index-list {
+    margin-top: 5em;
+    list-style: none;
+}
+.notification-index-list li {
+    margin-top: 1em;
+    background-color: white;
+    padding: 1em;
+}
+
+
