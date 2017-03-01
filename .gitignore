@@ -19,7 +19,7 @@
 !/log/.keep
 /tmp/*
 #Ignore yml file
-config/*.yml
+#config/*.yml
 #Ignore public file
 .idea/*
 .idea
