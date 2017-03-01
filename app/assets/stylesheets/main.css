@@ -143,7 +143,7 @@ html {
 .registration-bg {
     padding-top: 4em;
     height: 100%;
-    background-image: image-url('buddha.jpg');
+    background: image-url('buddha.jpg');
     -moz-background-size: cover;
     -webkit-background-size: cover;
     -o-background-size: cover;
@@ -164,7 +164,7 @@ html {
 .login-bg {
     padding-top: 4em;
     height: 100%;
-    background-image: image-url('buddha.jpeg');
+    background: image-url('buddha.jpeg');
     -moz-background-size: cover;
     -webkit-background-size: cover;
     -o-background-size: cover;
