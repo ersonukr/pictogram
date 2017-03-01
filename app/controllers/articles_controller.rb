@@ -6,7 +6,7 @@ class ArticlesController < ApplicationController
   before_action :owned_article, only: [:edit, :update, :destroy]
 
   def index
-    @articles = Article.all.order('created_at DESC').page params[:page]
+    @articles = Article.of_followed_users(current_user.following).order('created_at DESC').page params[:page]
   end
 
   def new
@@ -51,6 +51,10 @@ class ArticlesController < ApplicationController
         format.js
       end
     end
+  end
+
+  def browse
+    @articles = Article.all.order('created_at DESC').page params[:page]
   end
 
   private

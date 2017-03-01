@@ -11,7 +11,7 @@ module ArticlesHelper
     first_names = []
     unless votes.blank?
       votes.voters.each do |voter|
-        first_names.push(link_to voter.first_name, profile_path(voter.user_name), class: 'first-name')
+        first_names.push(link_to voter.first_name, profile_path(voter.first_name), class: 'first-name')
       end
       first_names.to_sentence.html_safe + like_plural(votes)
     end

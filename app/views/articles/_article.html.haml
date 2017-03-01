@@ -7,14 +7,14 @@
       .time-ago
         =time_ago_in_words article.created_at
     .image.center-block
-      =link_to (image_tag article.image.url(:medium), class:'img-responsive'),article_path(article)
+      =link_to (image_tag article.image.url(:medium), class:'img-responsive'), article_path(article)
     .article-bottom
       = render 'articles/likes', article: article
       .caption
         .caption-content
           .first-name
             =link_to article.user.first_name, profile_path(article.user.first_name)
-            =article.caption
+          =article.caption
           .comments{id: "comments_#{article.id}"}
             -if article.comments.any?
               = render article.comments.first(4), article: article
@@ -27,4 +27,4 @@
       .comment-form.col-sm-11
         =form_for([article, article.comments.build], remote: true) do |f|
           =f.text_field :content, placeholder: 'Add a comment...', class: "comment_content", id: "comment_content_#{article.id}", data: { article_id: "#{article.id}", value: "#{article.comments.count}" }
-          =f.submit 'New Comment', class: 'comment-submit-button' # Hidden with CSS
+          =f.submit 'New Comment', class: 'comment-submit-button'

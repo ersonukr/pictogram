@@ -13,6 +13,9 @@ class Article < ApplicationRecord
   validates :image, presence: true
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
+  #==== Scope ============================================================
+  scope :of_followed_users, -> (following_users) { where user_id: following_users }
+
   acts_as_votable
 
 end

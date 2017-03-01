@@ -275,4 +275,28 @@ html {
     padding: 1em;
 }
 
+.follow-button {
+    text-transform: uppercase;
+    border-color: #4090db;
+    color: #4090db;
+    margin-left: 20px;
+}
+.follow-button:visited, .follow-button:focus, .follow-button:hover {
+    border-color: #2D6396;
+    color: #2D6396;
+}
+
+.unfollow-button {
+    text-transform: uppercase;
+    border-color: #66bd2b;
+    background-color: #66bd2b;
+    color: white;
+    margin-left: 20px;
+}
+.unfollow-button:visited, .unfollow-button:focus, .unfollow-button:hover {
+    border-color: #47821F;
+    background-color: #47821F;
+    color: white;
+}
+
 
