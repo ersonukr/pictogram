@@ -9,7 +9,7 @@ module ApplicationHelper
 
   def form_image_select(article)
     return image_tag article.image.url(:medium), id: 'image-preview', class: 'img-responsive' if article.image.exists?
-    image_tag 'placeholder.jpg', id: 'image-preview', class: 'img-responsive'
+    image_tag 'buddha.jpeg', id: 'image-preview', class: 'img-responsive'
   end
 
   def profile_avatar_select(user)
